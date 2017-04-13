@@ -1,22 +1,27 @@
 require_relative 'bike'
 
-class DockingStation
+  class DockingStation
 
-def release_bike
-  if @bike == nil
-    raise "There are no bikes."
-  else
-    @bike
+  def initialize
+    @bike_store = []
   end
-end
 
-def dock(bike)
-  if @bike == nil
-    @bike = bike
-  else
-    raise "There is already a bike here"
+  def release_bike
+    if @bike_store == []
+      raise "There are no bikes."
+    else
+     @bike_store.pop
+    end
   end
-end
 
-attr_reader :bike
+  def dock(bike)
+    p @bike_store.count
+    if @bike_store.count == 19
+       raise "Docking station full"
+    else
+      @bike_store << bike
+    end
+  end
+
+  attr_reader :bike_store
 end

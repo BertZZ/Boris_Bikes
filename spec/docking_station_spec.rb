@@ -14,16 +14,26 @@ describe DockingStation do
   it "docks something" do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.bike).to eq bike
+    expect(subject.bike_store).to eq [bike]
   end
 
-  it "raises an error if there are no bikes" do
-    expect { subject.release_bike }.to raise_error "There are no bikes."
+  describe "#release_bike" do
+    it "raises an error if there are no bikes" do
+      expect {subject.release_bike }.to raise_error "There are no bikes."
+    end
   end
 
-  it "raises an error if there is already a bike" do
-    bike = Bike.new
-    expect{subject.dock(bike)}.to raise_error "There is already a bike here"
-  end
+  describe "#dock" do
+    it "raises an error if there are 20 bikes in the store" do
+      docking_station = DockingStation.new
+      20.times {docking_station.dock(Bike.new) }
+      expect {docking_station.dock(Bike.new) }.to raise_error "Docking station full"
+    end
 
+    it "docks something" do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(subject.bike_store).to eq [bike]
+    end
+  end
 end
