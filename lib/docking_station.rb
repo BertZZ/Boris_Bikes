@@ -15,8 +15,7 @@ require_relative 'bike'
   end
 
   def dock(bike)
-    p @bike_store.count
-    if @bike_store.count == 19
+    if @bike_store.count >= 19
        raise "Docking station full"
     else
       @bike_store << bike

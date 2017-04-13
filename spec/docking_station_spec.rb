@@ -26,8 +26,7 @@ describe DockingStation do
   describe "#dock" do
     it "raises an error if there are 20 bikes in the store" do
       docking_station = DockingStation.new
-      20.times {docking_station.dock(Bike.new) }
-      expect {docking_station.dock(Bike.new) }.to raise_error "Docking station full"
+      expect { 21.times{docking_station.dock(Bike.new)}}.to raise_error "Docking station full"
     end
 
     it "docks something" do
