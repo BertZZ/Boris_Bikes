@@ -1,11 +1,17 @@
+#require 'bike'
+
 class DockingStation
-  def release_bike
-    Bike.new
+
+def release_bike
+  if @bike == nil
+    raise "There are no bikes."
+  else
   end
 end
 
-class Bike
-  def working?
-    true
-  end
+def dock(bike)
+  @bike = bike
+end
+
+attr_reader :bike
 end
