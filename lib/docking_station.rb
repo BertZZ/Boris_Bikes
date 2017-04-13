@@ -22,5 +22,9 @@ require_relative 'bike'
     end
   end
 
+  def full?
+    true
+  end
+
   attr_reader :bike_store
 end

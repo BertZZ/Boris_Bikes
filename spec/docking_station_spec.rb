@@ -5,8 +5,8 @@ describe DockingStation do
   it {is_expected.to respond_to(:release_bike)}
 
   it "releases good bikes" do
-  bike = Bike.new
-  expect(bike.working?).to eq true
+    bike = Bike.new
+    expect(bike.working?).to eq true
   end
 
   it {is_expected.to respond_to(:dock).with(1).argument}
@@ -33,6 +33,12 @@ describe DockingStation do
       bike = Bike.new
       subject.dock(bike)
       expect(subject.bike_store).to eq [bike]
+    end
+  end
+
+  describe "#full?" do
+    it "returns true if docking station is full" do
+     expect(subject.full?).to eq true
     end
   end
 end
