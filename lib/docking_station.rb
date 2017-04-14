@@ -1,30 +1,28 @@
 require_relative 'bike'
 
-  class DockingStation
-
+class DockingStation
   def initialize
-    @bike_store = []
+    @bikes = []
   end
+  DEFULT_CAPACITY = 20
 
   def release_bike
-    if @bike_store == []
-      raise "There are no bikes."
-    else
-     @bike_store.pop
-    end
+    fail 'There are no bikes' if empty?
+    @bikes.pop
   end
 
   def dock(bike)
-    if @bike_store.count >= 19
-       raise "Docking station full"
-    else
-      @bike_store << bike
-    end
+    fail 'Docking station full' if full?
+    @bikes << bike
   end
+
+  private
 
   def full?
-    true
+    @bikes.count >= DEFULT_CAPACITY
   end
 
-  attr_reader :bike_store
+  def empty?
+    @bikes.empty?
+  end
 end

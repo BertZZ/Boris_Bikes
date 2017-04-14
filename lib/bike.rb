@@ -3,3 +3,12 @@ class Bike
     true
   end
 end
+
+
+def full?
+  @bike_store.count >= 20
+end
+
+def empty?
+  true
+end
