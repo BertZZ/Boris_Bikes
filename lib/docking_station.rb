@@ -3,6 +3,13 @@ require_relative 'bike'
 class DockingStation
   def initialize
     @bikes = []
+    puts "Please enter the number of bikes you would like this Docking station to accept"
+    input = gets.chomp
+    if input == ""
+      input = DEFULT_CAPACITY
+    else
+    end
+    @capacity = input
   end
   DEFULT_CAPACITY = 20
 
