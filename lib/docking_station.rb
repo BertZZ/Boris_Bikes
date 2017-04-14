@@ -6,12 +6,12 @@ class DockingStation
     puts "Please enter the number of bikes you would like this Docking station to accept"
     input = gets.chomp
     if input == ""
-      input = DEFULT_CAPACITY
+      input = DEFAULT_CAPACITY
     else
     end
     @capacity = input
   end
-  DEFULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 20
 
   def release_bike
     fail 'There are no bikes' if empty?
@@ -26,7 +26,7 @@ class DockingStation
   private
 
   def full?
-    @bikes.count >= DEFULT_CAPACITY
+    @bikes.count >= DEFAULT_CAPACITY
   end
 
   def empty?
