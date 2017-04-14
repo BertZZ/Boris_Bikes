@@ -1,5 +1,6 @@
 require_relative 'bike'
 
+
 class DockingStation
   def initialize
     @bikes = []
@@ -8,13 +9,17 @@ class DockingStation
     if input == ""
       input = DEFAULT_CAPACITY
     else
+      exit unless input == Integer
     end
     @capacity = input
   end
+
+  attr_reader :bikes
   DEFAULT_CAPACITY = 20
 
   def release_bike
     fail 'There are no bikes' if empty?
+    raise "There are no working bikes" if no_working_bikes?
     @bikes.pop
   end
 
@@ -22,6 +27,10 @@ class DockingStation
     fail 'Docking station full' if full?
     @bikes << bike
   end
+
+def no_working_bikes?
+  !(bikes.find { |bike| bike.working? })
+end
 
   private
 
@@ -32,4 +41,5 @@ class DockingStation
   def empty?
     @bikes.empty?
   end
+
 end
