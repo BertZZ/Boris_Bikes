@@ -1,20 +1,14 @@
 require_relative 'bike'
 
 
+
 class DockingStation
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
-    puts "Please enter the number of bikes you would like this Docking station to accept"
-    input = gets.chomp
-    if input == ""
-      input = DEFAULT_CAPACITY
-    else
-      exit unless input.to_i == Integer
-    end
-    @capacity = input
+    @capacity = capacity
   end
 
-  attr_reader :bikes
+  attr_reader :bikes, :capacity
   DEFAULT_CAPACITY = 20
 
   def release_bike
@@ -29,7 +23,7 @@ class DockingStation
   end
 
   def no_working_bikes?
-    (@bikes.find { |bike| bike.working? })
+    !(@bikes.find { |bike| bike.working? })
   end
 
   private
