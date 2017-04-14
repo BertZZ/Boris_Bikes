@@ -9,7 +9,7 @@ class DockingStation
     if input == ""
       input = DEFAULT_CAPACITY
     else
-      exit unless input == Integer
+      exit unless input.to_i == Integer
     end
     @capacity = input
   end
@@ -19,7 +19,7 @@ class DockingStation
 
   def release_bike
     fail 'There are no bikes' if empty?
-    raise "There are no working bikes" if no_working_bikes?
+    fail "There are no working bikes" if no_working_bikes?
     @bikes.pop
   end
 
@@ -28,9 +28,9 @@ class DockingStation
     @bikes << bike
   end
 
-def no_working_bikes?
-  !(bikes.find { |bike| bike.working? })
-end
+  def no_working_bikes?
+    (@bikes.find { |bike| bike.working? })
+  end
 
   private
 
